@@ -1,0 +1,48 @@
+---
+- name: Add repository - Open-JDK
+  apt_repository:
+    repo: ppa:openjdk-r/ppa
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Update cache & install openjdk-11-jdk
+  apt:
+    name: openjdk-11-jdk
+  become: yes
+
+- name: Install unzip
+  apt:
+    name: unzip
+  become: yes
+
+- name: Create temporary installation directory
+  tempfile:
+    state: directory
+    suffix: elasticsearch
+  register: elasticsearch_install_tmp_dir
+
+- name: Download and add repository key - Open Distro for Elasticsearch
+  apt_key:
+    url: https://d3g5vo6xdbdb9a.cloudfront.net/GPG-KEY-opendistroforelasticsearch
+    state: present
+  become: yes
+
+- name: Add repository - Open Distro for Elasticsearch
+  apt_repository:
+    repo: deb https://d3g5vo6xdbdb9a.cloudfront.net/apt stable main
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Download Elasticsearch OSS
+  get_url:
+    url: "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-{{ elasticsearch_oss_ver }}-amd64.deb"
+    dest: "{{ elasticsearch_install_tmp_dir['path'] }}"
+  register: elasticsearch_oss_download
+
+- name: Install Elasticsearch OSS
+  apt:
+    deb: "{{ elasticsearch_oss_download['dest'] }}"
+    state: present
+  become: yes
