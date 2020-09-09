@@ -1,5 +1,11 @@
 ---
 
+# --- OPEN-JDK --- #
+
+openjdk: "openjdk-11-jdk"
+
+# --- ELASTICSEARCH OSS & PLUGINS --- #
+
 # Define what optional plugins to install
 anomaly_detection_install: false
 job_scheduler_install: false

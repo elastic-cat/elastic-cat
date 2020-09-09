@@ -6,9 +6,9 @@
     update_cache: yes
   become: yes
 
-- name: Update cache & install openjdk-11-jdk
+- name: Update cache & install - Open-JDK
   apt:
-    name: openjdk-11-jdk
+    name: "{{ openjdk }}"
   become: yes
 
 - name: Install unzip
