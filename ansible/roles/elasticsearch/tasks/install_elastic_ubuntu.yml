@@ -19,7 +19,7 @@
 - name: Create temporary installation directory
   tempfile:
     state: directory
-    suffix: elasticsearch
+    suffix: "_elasticsearch"
   register: elasticsearch_install_tmp_dir
 
 - name: Download and add repository key - Open Distro for Elasticsearch
@@ -37,7 +37,7 @@
 
 - name: Download Elasticsearch OSS
   get_url:
-    url: "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-{{ elasticsearch_oss_ver }}-amd64.deb"
+    url: "https://artifacts.elastic.co/downloads/elasticsearch/{{ oss }}-amd64.deb"
     dest: "{{ elasticsearch_install_tmp_dir['path'] }}"
   register: elasticsearch_oss_download
 
@@ -46,3 +46,77 @@
     deb: "{{ elasticsearch_oss_download['dest'] }}"
     state: present
   become: yes
+
+# Install mandatory plugins
+
+- name: Install Elasticsearch OSS mandatory plugin - Security
+  apt:
+    name: "{{ security_plugin }}"
+    state: present
+  become: yes
+  tags:
+    - elasticsearch_oss_plugins
+
+- name: Install Elasticsearch OSS mandatory plugin - Index Management
+  apt:
+    name: "{{ index_management_plugin }}"
+    state: present
+  become: yes
+  tags:
+    - elasticsearch_oss_plugins
+
+# Install optional plugins
+
+- name: Install Elasticsearch OSS optional plugin - Anomaly Detection
+  apt:
+    name: "{{ anomaly_detection_plugin }}"
+    state: present
+  become: yes
+  when: anomaly_detection_install
+  tags:
+    - elasticsearch_oss_plugins
+
+- name: Install Elasticsearch OSS optional plugin - Job Scheduler
+  apt:
+    name: "job_scheduler_plugin"
+    state: present
+  become: yes
+  when: job_scheduler_install
+  tags:
+    - elasticsearch_oss_plugins
+
+- name: Install Elasticsearch OSS optional plugin - KNN
+  apt:
+    name: "{{ knn_plugin }}"
+    state: present
+  become: yes
+  when: knn_install
+  tags:
+    - elasticsearch_oss_plugins
+
+- name: Install Elasticsearch OSS optional plugin - Alerting
+  apt:
+    name: "{{ alerting_plugin }}"
+    state: present
+  become: yes
+  when: alerting_install
+  tags:
+    - elasticsearch_oss_plugins
+
+- name: Install Elasticsearch OSS optional plugin - Performance Analyzer
+  apt:
+    name: "{{ performance_analyzer_plugin }}"
+    state: present
+  become: yes
+  when: performance_analyzer_install
+  tags:
+    - elasticsearch_oss_plugins
+
+- name: Install Elasticsearch OSS optional plugin - Opendistro SQL
+  apt:
+    name: "{{ sql_plugin }}"
+    state: present
+  become: yes
+  when: sql_install
+  tags:
+    - elasticsearch_oss_plugins

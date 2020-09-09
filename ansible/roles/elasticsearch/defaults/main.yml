@@ -1,22 +1,26 @@
 ---
 
-# Define what plugins to install
-opendistro-anomaly-detection_install: false
-opendistro-job-scheduler_install: false
-opendistro-knn_install: false
-opendistro_alerting_install: false
-opendistro_performance_analyzer_install: false
-opendistro_sql_install: false
+# Define what optional plugins to install
+anomaly_detection_install: false
+job_scheduler_install: false
+knn_install: false
+alerting_install: false
+performance_analyzer_install: false
+sql_install: false
 
-# Define OSS version
-elasticsearch_oss_ver: 7.8.0
+# Define Elasticsearch OSS version
+oss: "elasticsearch-oss-7.8.0"
 
 # Define versions of plugins
-opendistro_index_management_ver: 1.9.0.0
-opendistro-anomaly-detection_ver: 1.9.0.0
-opendistro-job-scheduler_ver: 1.9.0.0
-opendistro-knn_ver: 1.9.0.0
-opendistro_alerting_ver: 1.9.0.0
-opendistro_performance_analyzer_ver: 1.9.0.1
-opendistro_security_ver: 1.9.0.0
-opendistro_sql_ver: 1.9.0.0
+
+## Mandatory
+security_plugin: "opendistro-security=1.9.0.0-0"
+index_management_plugin: "opendistro-index-management=1.9.0.0-1"
+
+## Optional
+anomaly_detection_plugin: "opendistro-anomaly-detection=1.9.0.0-1"
+job_scheduler_plugin: "opendistro-job-scheduler=1.9.0.0-1"
+knn_plugin: "opendistro-knn=1.9.0.0-1"
+alerting_plugin: "opendistro-alerting=1.9.0.0-1"
+performance_analyzer_plugin: "opendistro-performance-analyzer=1.9.0.1-1"
+sql_plugin: "opendistro-sql=1.9.0.0-1"
