@@ -1,4 +1,4 @@
-- name: Install ElasticSearch for Ubuntu
-  import_tasks: install_elastic_ubuntu.yml
+- name: Install Elasticsearch on Ubuntu
+  import_tasks: install_elasticsearch_ubuntu.yml
   when:
     - ansible_facts['os_family']|lower == 'debian' and install_elasticsearch
