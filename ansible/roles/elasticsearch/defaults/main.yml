@@ -1,5 +1,9 @@
 ---
 
+# --- TASKS --- #
+
+install_elasticsearch: false
+
 # --- OPEN-JDK --- #
 
 openjdk: "openjdk-11-jdk"
