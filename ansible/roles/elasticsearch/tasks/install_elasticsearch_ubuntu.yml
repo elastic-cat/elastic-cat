@@ -81,7 +81,9 @@
     name: "{{ job_scheduler_plugin }}"
     state: present
   become: yes
-  when: job_scheduler_install
+  when:
+    - job_scheduler_install
+    - anomaly_detection_install
   tags:
     - elasticsearch_oss_plugins
 
