@@ -2,7 +2,7 @@
 
 # --- TASKS --- #
 
-install_elasticsearch: false
+install_elasticsearch: true
 
 # --- OPEN-JDK --- #
 
