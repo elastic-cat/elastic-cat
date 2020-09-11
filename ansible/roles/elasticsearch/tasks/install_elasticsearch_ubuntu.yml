@@ -78,7 +78,7 @@
 
 - name: Install Elasticsearch OSS optional plugin - Job Scheduler
   apt:
-    name: "job_scheduler_plugin"
+    name: "{{ job_scheduler_plugin }}"
     state: present
   become: yes
   when: job_scheduler_install
@@ -120,3 +120,20 @@
   when: sql_install
   tags:
     - elasticsearch_oss_plugins
+
+- name: Start Elasticsearch
+  service:
+    name: elasticsearch.service
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Test Elasticsearch availability
+  uri:
+    url: https://localhost:9200
+    method: XGET
+    body:
+      name: "{{ admin }}"
+      password: "{{ admin }}"
+    status_code: 302
+  register: test_login_status
