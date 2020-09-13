@@ -130,12 +130,22 @@
     enabled: yes
   become: yes
 
-- name: Test Elasticsearch availability
+- name: Test Elasticsearch post installation availability
   uri:
     url: https://localhost:9200
-    method: XGET
-    body:
-      name: "{{ admin }}"
-      password: "{{ admin }}"
-    status_code: 302
-  register: test_login_status
+    method: GET
+    url_username: "{{ default_admin }}"
+    url_password: "{{ default_admin_password }}"
+    validate_certs: no
+  register: post_install_test
+  tags:
+    - test_elasticsearch_installation
+
+- name: Display post-installation information
+  debug:
+    msg:
+      - "Post-installation status:"
+      - "{{ post_install_test.json }}"
+      - "Status: {{ post_install_test.status }}"
+  tags:
+    - test_elasticsearch_installation

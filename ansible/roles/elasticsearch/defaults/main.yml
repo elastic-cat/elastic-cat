@@ -11,12 +11,12 @@ openjdk: "openjdk-11-jdk"
 # --- ELASTICSEARCH OSS & PLUGINS --- #
 
 # Define what optional plugins to install
-anomaly_detection_install: false
-job_scheduler_install: false
-knn_install: false
-alerting_install: false
-performance_analyzer_install: false
-sql_install: false
+anomaly_detection_install: true
+job_scheduler_install: true
+knn_install: true
+alerting_install: true
+performance_analyzer_install: true
+sql_install: true
 
 # Define Elasticsearch OSS version
 oss: "elasticsearch-oss-7.8.0"
