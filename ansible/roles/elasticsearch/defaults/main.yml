@@ -1,6 +1,6 @@
 ---
 
-# --- TASKS --- #
+# --- TASKS ENABLERS --- #
 
 install_elasticsearch: true
 
@@ -9,6 +9,8 @@ install_elasticsearch: true
 openjdk: "openjdk-11-jdk"
 
 # --- ELASTICSEARCH OSS & PLUGINS --- #
+
+plugin_url: ""
 
 # Define what optional plugins to install
 anomaly_detection_install: true
@@ -24,13 +26,21 @@ oss: "elasticsearch-oss-7.8.0"
 # Define versions of plugins
 
 ## Mandatory
-security_plugin: "opendistro-security=1.9.0.0-0"
-index_management_plugin: "opendistro-index-management=1.9.0.0-1"
+security_plugin_package: "opendistro-security"
+security_plugin_version: "1.9.0.0-0"
+index_management_plugin_package: "opendistro-index-management"
+index_management_plugin_version: "1.9.0.0-1"
 
 ## Optional
-anomaly_detection_plugin: "opendistro-anomaly-detection=1.9.0.0-1"
-job_scheduler_plugin: "opendistro-job-scheduler=1.9.0.0-1"
-knn_plugin: "opendistro-knn=1.9.0.0-1"
-alerting_plugin: "opendistro-alerting=1.9.0.0-1"
-performance_analyzer_plugin: "opendistro-performance-analyzer=1.9.0.1-1"
-sql_plugin: "opendistro-sql=1.9.0.0-1"
+anomaly_detection_plugin_package: "opendistro-anomaly-detection"
+anomaly_detection_plugin_version: "1.9.0.0-1"
+job_scheduler_plugin_package: "opendistro-job-scheduler"
+job_scheduler_plugin_version: "1.9.0.0-1"
+knn_plugin_package: "opendistro-knn"
+knn_plugin_version: "1.9.0.0-1"
+alerting_plugin_package: "opendistro-alerting"
+alerting_plugin_version: "1.9.0.0-1"
+performance_analyzer_plugin_package: "opendistro-performance-analyzer"
+performance_analyzer_plugin_version: "1.9.0.1-1"
+sql_plugin_package: "opendistro-sql"
+sql_plugin_version: "1.9.0.0-1"

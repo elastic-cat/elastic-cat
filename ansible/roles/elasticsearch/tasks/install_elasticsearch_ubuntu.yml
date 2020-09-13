@@ -51,7 +51,7 @@
 
 - name: Install Elasticsearch OSS mandatory plugin - Security
   apt:
-    name: "{{ security_plugin }}"
+    name: "{{ security_plugin_package }}={{ security_plugin_version }}"
     state: present
   become: yes
   tags:
@@ -59,7 +59,7 @@
 
 - name: Install Elasticsearch OSS mandatory plugin - Index Management
   apt:
-    name: "{{ index_management_plugin }}"
+    name: "{{ index_management_plugin_package }}={{ index_management_plugin_version }}"
     state: present
   become: yes
   tags:
@@ -69,7 +69,7 @@
 
 - name: Install Elasticsearch OSS optional plugin - Anomaly Detection
   apt:
-    name: "{{ anomaly_detection_plugin }}"
+    name: "{{ anomaly_detection_plugin_package }}={{ anomaly_detection_plugin_version }}"
     state: present
   become: yes
   when: anomaly_detection_install
@@ -78,7 +78,7 @@
 
 - name: Install Elasticsearch OSS optional plugin - Job Scheduler
   apt:
-    name: "{{ job_scheduler_plugin }}"
+    name: "{{ job_scheduler_plugin_package }}={{ job_scheduler_plugin_version }}"
     state: present
   become: yes
   when:
@@ -89,7 +89,7 @@
 
 - name: Install Elasticsearch OSS optional plugin - KNN
   apt:
-    name: "{{ knn_plugin }}"
+    name: "{{ knn_plugin_package }}={{ knn_plugin_version }}"
     state: present
   become: yes
   when: knn_install
@@ -98,7 +98,7 @@
 
 - name: Install Elasticsearch OSS optional plugin - Alerting
   apt:
-    name: "{{ alerting_plugin }}"
+    name: "{{ alerting_plugin_package }}={{ alerting_plugin_version }}"
     state: present
   become: yes
   when: alerting_install
@@ -107,16 +107,16 @@
 
 - name: Install Elasticsearch OSS optional plugin - Performance Analyzer
   apt:
-    name: "{{ performance_analyzer_plugin }}"
+    name: "{{ performance_analyzer_plugin_package }}={{ performance_analyzer_plugin_version }}"
     state: present
   become: yes
   when: performance_analyzer_install
   tags:
     - elasticsearch_oss_plugins
 
-- name: Install Elasticsearch OSS optional plugin - Opendistro SQL
+- name: Install Elasticsearch OSS optional plugin - SQL
   apt:
-    name: "{{ sql_plugin }}"
+    name: "{{ sql_plugin_package }}={{ sql_plugin_version }}"
     state: present
   become: yes
   when: sql_install
